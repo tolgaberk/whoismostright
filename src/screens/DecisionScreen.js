@@ -50,13 +50,14 @@ const DecisionScreen = ({navigation, route}) => {
       .set({...subject.data, options: newChoices});
   };
 
-  const selectChoice = async () => {
+  const selectChoice = async (item) => {
     const randomIndex = Math.floor(Math.random() * choices.length);
+    const selectedItem = item ? item : choices[randomIndex];
     await firestore()
       .collection('subjects')
       .doc(subject.id)
-      .set({...subject.data, chosenOption: choices[randomIndex]});
-    setResultAlertContent(choices[randomIndex]);
+      .set({...subject.data, chosenOption: selectedItem});
+    setResultAlertContent(selectedItem);
   };
   return (
     <View style={styles.container}>
@@ -71,6 +72,7 @@ const DecisionScreen = ({navigation, route}) => {
         data={choices}
         renderItem={({item, index}) => (
           <DecisionCard
+            selectChoice={selectChoice}
             item={item}
             removeItem={removeChoice}
             delay={50 * index + 1}
@@ -87,17 +89,18 @@ const DecisionScreen = ({navigation, route}) => {
       <TouchableOpacity onPress={selectChoice} style={styles.selectButton}>
         <Text style={styles.selectButtonText}>Karar Ver!</Text>
       </TouchableOpacity>
-      <ResultAlert />
+      <ResultAlert navigation={navigation} />
     </View>
   );
 };
 
-function ResultAlert() {
+function ResultAlert({navigation}) {
   const [result, setResult] = useState(null);
   setResultAlertContent = setResult;
   const resultViewRef = useRef();
   const closeResult = async () => {
     await resultViewRef.current?.fadeOutDown(300);
+    navigation.goBack();
     setResult(null);
   };
   return result ? (
@@ -116,30 +119,46 @@ function ResultAlert() {
     </Animatable.View>
   ) : null;
 }
-const DecisionCard = ({item, removeItem, delay}) => {
+const DecisionCard = ({item, removeItem, delay, selectChoice}) => {
   const viewRef = useRef();
   const removeSubject = async () => {
     await viewRef.current?.fadeOutRight(300);
     removeItem(item);
   };
+  const selectThis = () => selectChoice(item);
   return (
     <Animatable.View
-      style={styles.subjectCardContainer}
       animation="fadeInLeft"
       duration={300}
       delay={delay}
       ref={viewRef}>
-      <Text style={styles.decisionCardText}>{item}</Text>
       <TouchableOpacity
-        onPress={removeSubject}
-        style={styles.subjectCardRemoveIcon}>
-        <RemoveIcon color={R.colors.white} width={32} height={32} />
+        onPress={selectThis}
+        style={styles.subjectCardContainer}>
+        <Text style={styles.decisionCardText}>{item}</Text>
+        <TouchableOpacity
+          onPress={removeSubject}
+          style={styles.subjectCardRemoveIcon}>
+          <RemoveIcon color={R.colors.white} width={32} height={32} />
+        </TouchableOpacity>
       </TouchableOpacity>
     </Animatable.View>
   );
 };
 
 const styles = StyleSheet.create({
+  subjectCardContainer: {
+    backgroundColor: R.colors.white,
+    borderRadius: 5,
+    minHeight: 40,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    margin: 8,
+    marginVertical: 4,
+    padding: 8,
+    paddingHorizontal: 16,
+    flexDirection: 'row',
+  },
   resultBoldText: {
     color: R.colors.accent,
     fontFamily: 'Montserrat-Bold',
@@ -178,18 +197,7 @@ const styles = StyleSheet.create({
   selectButtonText: {color: R.colors.white, fontSize: 24},
   container: {flex: 1},
   subjectCardRemoveIcon: {backgroundColor: R.colors.primary, borderRadius: 24},
-  subjectCardContainer: {
-    backgroundColor: R.colors.white,
-    borderRadius: 5,
-    minHeight: 40,
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    margin: 8,
-    marginVertical: 4,
-    padding: 8,
-    paddingHorizontal: 16,
-    flexDirection: 'row',
-  },
+
   selectButton: {
     backgroundColor: R.colors.primary,
     margin: 16,
