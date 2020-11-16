@@ -49,6 +49,7 @@ const DecisionScreen = ({navigation}) => {
       });
     return subscriber;
   }, []);
+
   return (
     <View style={styles.globalContainer}>
       <HeaderBar
@@ -66,7 +67,7 @@ const DecisionScreen = ({navigation}) => {
             keyExtractor={(item) => item.data.name}
             renderItem={({item, index}) => (
               <SubjectCard
-                key={item.id + index}
+                key={item.id + index + ''}
                 item={item}
                 navigate={navigation.navigate}
                 removeItem={removeSubject}

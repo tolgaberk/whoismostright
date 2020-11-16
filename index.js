@@ -6,7 +6,8 @@ import {AppRegistry} from 'react-native';
 import App from './src/Router';
 import {name as appName} from './app.json';
 import codePush from 'react-native-code-push';
-
+import moment from 'moment/min/moment-with-locales';
+moment.locale('tr');
 const codePushOptions = {
   /*updateDialog: {
        title: '',

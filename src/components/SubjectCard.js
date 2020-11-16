@@ -15,16 +15,17 @@ export const SubjectCard = ({item, navigate, removeItem}) => {
     await cardRef.current?.fadeOutRight(300);
     removeItem(item.id);
   };
+  const {name, chosenOption} = item.data;
   return (
     <Animatable.View animation="fadeInLeft" duration={300} ref={cardRef}>
       <TouchableOpacity
         onPress={navigateToSubject}
         style={styles.subjectCardContainer}>
         <View style={styles.subjectTextContainer}>
-          <Text style={styles.subjectNameText}>{item.data.name}</Text>
-          {item.data.chosenOption && (
+          <Text style={styles.subjectNameText}>{name}</Text>
+          {chosenOption !== '' && (
             <Text style={styles.chosenOption}>
-              Kararımız {item.data.chosenOption}
+              Kararımız <Text>{chosenOption}</Text>
             </Text>
           )}
         </View>

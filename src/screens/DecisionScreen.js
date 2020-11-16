@@ -86,7 +86,9 @@ const DecisionScreen = ({navigation, route}) => {
         toggleModal={toggleModal}
         onElementAddition={onChoiceAdd}
       />
-      <TouchableOpacity onPress={selectChoice} style={styles.selectButton}>
+      <TouchableOpacity
+        onPress={() => selectChoice()}
+        style={styles.selectButton}>
         <Text style={styles.selectButtonText}>Karar Ver!</Text>
       </TouchableOpacity>
       <ResultAlert navigation={navigation} />

@@ -6,6 +6,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import DecisionsScreen from './screens/DecisionsScreen';
 import DecisionScreen from './screens/DecisionScreen';
 import R from './assets/R';
+import DateLogScreen from './screens/DateLogScreen';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -14,7 +15,6 @@ export default function App() {
   return (
     <NavigationContainer>
       <Drawer.Navigator
-        initialRouteName="Home"
         drawerContentOptions={{
           activeBackgroundColor: R.colors.accent,
           activeTintColor: R.colors.white,
@@ -26,6 +26,7 @@ export default function App() {
           itemStyle: {borderWidth: 1, borderColor: 'rgba(0,0,0,0.1)'},
         }}>
         <Drawer.Screen name="Haklı mısın?" component={HomeScreen} />
+        <Drawer.Screen name="Nerelere gittik?" component={DateLogScreen} />
         <Drawer.Screen
           name="Karar versek mi artık?"
           component={DecisionStack}
