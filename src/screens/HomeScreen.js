@@ -6,8 +6,8 @@ import {ScoreBoard} from '../components/ScoreBoard';
 import {NotificationBox} from '../components/NotificationBox';
 
 const users = [
-  {name: 'Şulenur', uid: 'Lh8SUuITJDs7dQRFraIz'},
-  {name: 'Tolga', uid: 'nLGImWCDkIKnHzGc8wh6'},
+  {name: 'User1', uid: 'Lh8SUuITJDs7dQRFraIz'},
+  {name: 'User2', uid: 'nLGImWCDkIKnHzGc8wh6'},
 ];
 
 function HomeScreen({navigation}) {
