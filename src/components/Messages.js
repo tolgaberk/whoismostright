@@ -3,7 +3,7 @@ export default function getMessage(type) {
   return messages[type][index];
 }
 const messages = {
-  minusMessagessulenur: [
+  "minusMessagesUser1": [
     {
       title: 'Normaldiir',
       text: 'Bazen olur öyle şeyler üzülme...',
@@ -13,7 +13,7 @@ const messages = {
       text: 'Bidaha bakın genelde haklı oluyor bu kız',
     },
   ],
-  minusMessagestolga: [
+  "minusMessagesUser2": [
     {
       title: 'Yoğ öle bişe',
       text: 'Doğru bakın hata olmasın',
@@ -42,7 +42,7 @@ const messages = {
       text: 'Neler deneniyor böyle bunlar hep şike',
     },
   ],
-  sulenur: [
+  "User1": [
     {
       title: 'Her şeyi bilmek nasıl bir duygu?',
     },
@@ -52,10 +52,10 @@ const messages = {
     },
     {
       title: 'Avans bu',
-      text: 'Tolga avans vermiş olmalı aksi imkansız',
+      text: 'User2 avans vermiş olmalı aksi imkansız',
     },
   ],
-  tolga: [
+  "User2": [
     {
       title: 'ehehehe',
       text: 'Her zaman haklı olması dışında\nçok büyük bir kazanç sayılmaz :)',
@@ -66,37 +66,7 @@ const messages = {
     },
     {
       title: 'Aaa yine mi?',
-      text: 'Nasıl ya niye hep Tolga haklı çıkıyor?',
-    },
-  ],
-  can: [
-    {
-      title: 'Kendine gel!',
-      text: 'Seni orada bekliyorum.',
-    },
-    {
-      title: 'Sen bana bakma,',
-      text: 'ben senin baktığın yerde olurum.',
-    },
-    {
-      title: 'Beni öyle bir yalana inandır ki,',
-      text: 'ömrümce sürsün doğruluğu.',
-    },
-    {
-      title: 'Herkes fazlasıyla sevmiş',
-      text: 'Ben eksikleriyle de sevdim oysa.',
-    },
-    {
-      title: 'Bir kelimeye bin anlam yüklediğim zaman,',
-      text: 'sana sesleneceğim.',
-    },
-    {
-      title: 'Bakarken kıyamamak mı,',
-      text: 'yoksa baktıkça doyamamak mıdır aşk?',
-    },
-    {
-      title: 'Beni yokluğunla savaştırma,',
-      text: 'kaybederim!',
+      text: 'Nasıl ya niye hep User2 haklı çıkıyor?',
     },
   ],
 };
